@@ -16,9 +16,30 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// Route::get('/register', 'ResultsController@index')->name('register');
+// Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+//Voting routes
+//Display All Votes
+Route::get('/votes', function () {
+    
+    $votes = DB::table('votes')->get();
+    
+    //dd($votes);
+    //return $votes;
+    return view('votes.index', ['votes' => $votes]);
+});
+//Display specific Vote
+Route::get('/votes/{id}', function ($id) {
+    
+    $vote = DB::table('votes')->find($id);
+    
+    return view('votes.show', ['vote' => $vote]);
+});
 
-Route::get('/vote', 'VoteController@index')->name('vote');
+//Show voting form
+Route::get('/vote', 'VoteController@index')->name('votes.vote');
+//Post form data
+Route::post('/vote', 'VoteController@make')->name('votes.index');;

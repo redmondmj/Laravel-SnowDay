@@ -24,6 +24,8 @@ Bash: ```echo $PATH```
 ```laravel new ProjectName```
 
 ## if you build it...
+* Try Artisan:
+ ```php artisan inspire```
 * All the JS
  ```npm install``
  ```npm run dev```
@@ -37,12 +39,20 @@ Config:
 ```.env```
 Router:
 ```\routes\web.php```
+Model:
+```\app\User.php```
 Views:
 ```\resources\views\welcome.blade.php```
 Controllers:
 ```\app\Http\Controllers\```
-Model - Database:
+Database:
 ```\database\migrations```
 
 ## Add Auth
+```composer require laravel/ui```
 ```php artisan ui vue --auth```
+Edit Registration, i.e.:
+```\resources\views\auth\register.blade.php```
+```\app\Http\Controllers\Auth\RegisterController.php```
+```\app\User.php```
+```\database\migrations\2014_10_12_000000_create_users_table.php```
