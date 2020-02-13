@@ -51,8 +51,12 @@ Database:
 ## Add Auth
 ```composer require laravel/ui```
 ```php artisan ui vue --auth```
-Edit Registration, i.e.:
+
+## Building this Demo App
+### Edit Registration form as needed, i.e.:
 ```\resources\views\auth\register.blade.php```
 ```\app\Http\Controllers\Auth\RegisterController.php```
 ```\app\User.php```
 ```\database\migrations\2014_10_12_000000_create_users_table.php```
+### Add the voting View & Controller
+```php artisan make:controller 

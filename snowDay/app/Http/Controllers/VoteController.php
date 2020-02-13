@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Vote;
 
 class VoteController extends Controller
 {
@@ -27,12 +28,12 @@ class VoteController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator()
     {
         return Validator::make($data, [
             'vote' => ['required', 'integer', 'digits_between:0,3'],
-            'guest_name' => ['string', 'max:255', 'unique:users'],
-            'guest_school' => ['string', 'max:255'],
+            'name' => ['string', 'max:255', 'unique:users'],
+            'school' => ['string', 'max:255'],
         ]);
     }
 
@@ -44,16 +45,39 @@ class VoteController extends Controller
      */
     protected function create(array $data)
     {
-        return Vote::create([
-            'user_id' => $data['user_id'],
-            'vote' => $data['vote'],
-            'guest_name' => $data['guest_name'],
-            'guest_school' => $data['guest_school'],
-            'school' => $data['school'],
-            'vote' => $data['vote'],
-        ]);
+        dd(request($data));
+        // return Vote::create([
+        //     'user_id' => $data['user_id'],
+        //     'vote' => $data['vote'],
+        //     'guest_name' => $data['guest_name'],
+        //     'guest_school' => $data['guest_school'],
+        //     'school' => $data['school'],
+        //     'vote' => $data['vote'],
+        // ]);
     }
 
+    /**
+     * Store the vote.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function store()
+    {
+        //test 
+        //return request()->all();
+
+        $vote = new Vote();
+
+        $vote->user_id = request('user_id');
+        $vote->name = request('name');
+        $vote->school = request('school');
+        $vote->vote = request('vote');
+        
+        $vote->save();
+
+        return redirect('/votes/show');
+        //return view('results');
+    }
     /**
      * Show the application dashboard.
      *
@@ -61,7 +85,7 @@ class VoteController extends Controller
      */
     public function index()
     {
-        return view('votes.vote');
+        return view('votes.create');
         // return view('results');
     }
 }

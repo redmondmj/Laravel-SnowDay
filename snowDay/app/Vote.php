@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vote extends Model
 {
-    use Notifiable;
+    //use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -14,7 +14,7 @@ class Vote extends Model
      * @var array
      */
     protected $fillable = [
-        'vote', 'guest_name', 'guest_school'
+        'vote', 'name', 'school'
     ];
 
 }
