@@ -29,8 +29,6 @@ Bash: ```echo $PATH```
 * All the JS
  ```npm install``
  ```npm run dev```
-* Add auth
- ```php artisan ui vue --auth```
 * Run the server
 ```php artisan serve```
 
@@ -59,4 +57,13 @@ Database:
 ```\app\User.php```
 ```\database\migrations\2014_10_12_000000_create_users_table.php```
 ### Add the voting View & Controller
-```php artisan make:controller 
+```php artisan make:controller VoteController```
+```php artisan make:model Votes```
+#### Set up views as needed
+
+### Add User Managament
+```php artisan make:controller \\Admin\\UserController -r -mUser```
+```php artisan make:model Role -m```
+
+``` php artisan make:seed RolesTableSeeder```
+
