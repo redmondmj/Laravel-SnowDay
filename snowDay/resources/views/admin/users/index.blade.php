@@ -8,10 +8,36 @@
                 <div class="card">
                     <div class="card-header">User Management:</div>
                     <div class="card-body">
-                        @foreach ($users as $user)
-                            {{ $user->name }} - {{ $user->email }} <br>
-                        @endforeach
-                        {{-- <button href="{{ URL::previous() }}" class="btn btn-primary" type="button">Go Back!</button> --}}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">User id</th>
+                                    <th scope="col">User NAme</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Roles</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                    @foreach ($users as $user)
+                                        <tr>
+                                            <th>{{ $user->id }}</th>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
+                                            <td>
+                                            <a href="{{ route('admin.users.edit', $user->id )}}"><button class="btn btn-info text-white float-left mr-2" type="submit">Edit</button></a>
+                                            <form action="{{ route('admin.users.destroy', $user)}}" method="post" class="float-left">
+                                                {{ method_field('DELETE')}}
+                                                @csrf
+                                                <button class="btn btn-danger text-white" type="submit">Delete</button></a>
+                                            </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                        </table>
+
                         <a href="{{ URL::previous() }}" class="btn btn-info text-white" role="button">Go Back</a>
                     </div>
                 </div>
