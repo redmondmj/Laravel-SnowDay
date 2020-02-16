@@ -13,7 +13,10 @@
                         @csrf
                         @foreach ($roles as $role)
                             <div class="form-check">
-                                <input type="checkbox" name="roles[]" value="{{ $role->id }}" id="roles_{{ $role->name }}">
+                                <input type="checkbox" name="roles[]" value="{{ $role->id }}" id="roles_{{ $role->name }}"
+                                @if ($user->hasRole($role->name))
+                                    checked
+                                @endif>
                                 <label for="roles_{{ $role->name }}">{{ $role->name }}</label>
                             </div>
                         @endforeach
