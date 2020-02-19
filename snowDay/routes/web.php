@@ -31,18 +31,20 @@ Route::post('/votes/create', 'VoteController@store')->name('votes.index');
 
 //Display All Votes
 Route::get('/votes/show', function () {
-    
-    $votes = DB::table('votes')->get();
-    
-    //dd($votes);
+
+    $data['votes'] = DB::table('votes')->get();
+    $data['yesVotes'] = DB::table('votes')->where('vote', 1)->count('vote');
+    $data['noVotes'] = DB::table('votes')->where('vote', 0)->count('vote');
+
+    //dd($yesVotes);
     //return $votes;
-    return view('votes.index', ['votes' => $votes]);
+    return view('votes.index', ['data' => $data]);
 });
 //Display specific Vote
 Route::get('/votes/show/{id}', function ($id) {
-    
+
     $vote = DB::table('votes')->find($id);
-    
+
     return view('votes.show', ['vote' => $vote]);
 });
 

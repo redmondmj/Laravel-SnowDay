@@ -16,14 +16,14 @@ class CreateVotesTable extends Migration
         Schema::create('votes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->nullable();
-            $table->integer('name')->nullable();
-            $table->integer('school')->nullable();
+            $table->string('name')->nullable();
+            $table->string('school')->nullable();
             $table->integer('vote');
             $table->timestamps();
-        
+
             $table->foreign('user_id')->references('id')->on('users');
             // $table->foreign('school')->references('school')->on('users');
-        
+
         });
     }
 
