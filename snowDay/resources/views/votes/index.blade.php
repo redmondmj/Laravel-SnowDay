@@ -4,14 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card mb-5">
-                <div class="card-header">{{ __('Results') }}</div>
-                <div class="card-body" id="result">
-                    <p>The result is .</p>
-                </div>
-            </div>
+            <chart-component :yesvotes="{!! json_encode($data['yesVotes']) !!}" :novotes="'{{ $data['noVotes'] }}'">
+            </chart-component>
             <div class="card mb-3">
-                <div class="card-header">{{ __('Votes') }}</div>
+                <div class="card-header">Votes</div>
                 <div class="card-body">
                     <table class="table">
                         <tr>
@@ -21,12 +17,12 @@
                             <th>School</th>
                             <th>Snow Vote</th>
                         </tr>
-                        @for($i = 0; $i < count($votes); $i++) <tr>
-                            <td><a href="/votes/show/{{ $votes[$i]->id }}">{{ $votes[$i]->id }}</a></td>
-                            <td>{{ $votes[$i]->user_id }}</td>
-                            <td>{{ $votes[$i]->name }}</td>
-                            <td>{{ $votes[$i]->school }}</td>
-                            <td>{{ $votes[$i]->vote }}</td>
+                        @for($i = 0; $i < count($data['votes']); $i++) <tr>
+                            <td><a href="/votes/show/{{ $data['votes'][$i]->id }}">{{ $data['votes'][$i]->id }}</a></td>
+                            <td>{{ $data['votes'][$i]->user_id }}</td>
+                            <td>{{ $data['votes'][$i]->name }}</td>
+                            <td>{{ $data['votes'][$i]->school }}</td>
+                            <td>{{ $data['votes'][$i]->vote }}</td>
                             </tr>
                             @endfor
                     </table>
@@ -34,9 +30,7 @@
 
                 </div>
             </div>
-            <div id="app">
-                <example-component></example-component>
-            </div>
+            <example-component></example-component>
         </div>
     </div>
 
