@@ -33,7 +33,7 @@ class UserController extends Controller
         return view('admin.users.index')->with('users', $users);
     }
 
-   
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -42,13 +42,16 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        // ensure user has access and redirect
         if (Gate::denies('edit-users')) {
             return redirect()->route('admin.users.index');
         }
+
+        //this gets the users roles
         $roles = Role::all();
         return view('admin.users.edit')->with([
-            'user' => $user, 
-            'roles'=> $roles 
+            'user' => $user,
+            'roles'=> $roles
         ]);
     }
 

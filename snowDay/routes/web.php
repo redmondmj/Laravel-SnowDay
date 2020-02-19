@@ -53,6 +53,6 @@ Route::get('/votes/show/{id}', function ($id) {
 //Route without manage-users gate
 //Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
 // Route with manage-users gate check
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function() {
-    Route::resource('/users', 'UserController', ['except'=>['show', 'create', 'store']]);
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function() { //applies to all routes in the /admin  namespace and prefixes admin. to the url
+    Route::resource('/users', 'UserController', ['except'=>['show', 'create', 'store']]); // adds routes for user management
 });

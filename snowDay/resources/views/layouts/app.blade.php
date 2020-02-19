@@ -64,7 +64,7 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
+                                {{-- Added User Management Link --}}
                                 <a href="{{ route('admin.users.index') }}" class="dropdown-item">
                                     User Management
                                 </a>
