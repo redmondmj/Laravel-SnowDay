@@ -24,23 +24,26 @@ Auth::routes();
 
 
 //Voting routes
-//Show voting form
+//Create vote form
 Route::get('/votes/create', 'VoteController@index')->name('votes.create');
 //Post form data
 Route::post('/votes/create', 'VoteController@store')->name('votes.index');
 
-//Display All Votes
+//Show Results
+//TODO: Move this to a controller. Results?
 Route::get('/votes/show', function () {
-
+    // TODO: Perhaps there is a more efficient way to handle this data?
     $data['votes'] = DB::table('votes')->get();
     $data['yesVotes'] = DB::table('votes')->where('vote', 1)->count('vote');
     $data['noVotes'] = DB::table('votes')->where('vote', 0)->count('vote');
+
 
     //dd($yesVotes);
     //return $votes;
     return view('votes.index', ['data' => $data]);
 });
 //Display specific Vote
+//TODO: Move this to a controller. Results?
 Route::get('/votes/show/{id}', function ($id) {
 
     $vote = DB::table('votes')->find($id);

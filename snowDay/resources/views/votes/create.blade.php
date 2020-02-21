@@ -27,7 +27,7 @@
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
                                     name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
-
+                                <!-- TODO: This validation is not implimented yet -->
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -41,9 +41,9 @@
                                     class="fa fa-graduation-cap ml-2" aria-hidden="true"></i></label>
 
                             <div class="col-md-6">
-                                <input id="school" type="text" class="form-control @error(" school") is-invalid
+                                <input id="school" type="text" class="form-control @error('school') is-invalid
                                     @enderror" name="school" value="{{ old("school") }}" autocomplete="school">
-
+                                <!-- TODO: This validation is not implimented yet -->
                                 @error("school")
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -52,6 +52,8 @@
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center">
+                            <!-- TODO: Vue: Since we now have name and school in the form above why not
+                                put it in the message like we do for logged in users. See Vue ExampleComponent-->
                             <p class="h3 text-center my-5">So, will there be a snow day for your school tomorrow?</p>
                         </div>
 

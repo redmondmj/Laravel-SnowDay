@@ -65,6 +65,7 @@
                                     {{ __('Logout') }}
                                 </a>
                                 {{-- Added User Management Link --}}
+                                <!-- TODO: Should we show this link to everyone? Or should we use an auth gate?-->
                                 <a href="{{ route('admin.users.index') }}" class="dropdown-item">
                                     User Management
                                 </a>
